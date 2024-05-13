@@ -11,14 +11,17 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
+  // testMatch: ["tests/02_users/testCon.spec.ts"],
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
+  /* Retry */
+  // retries: 3,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  // workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -28,23 +31,38 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    // headless: true,
+    // screenshot: "on", 
   },
 
   /* Configure projects for major browsers */
   projects: [
+    // {
+    //   name: 'setup db',
+    //   testMatch: /global\.setup\.ts/,
+    //   // testMatch: 'tests/global.setup.ts',
+    //   teardown: 'cleanup db',
+    // },
+    // {
+    //   name: 'cleanup db',
+    //   testMatch: /global\.teardown\.ts/,
+    // },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      // dependencies: ['setup db'],
     },
 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
+      // dependencies: ['setup db'],
     },
 
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+      // dependencies: ['setup db'],
     },
 
     /* Test against mobile viewports. */
