@@ -26,13 +26,14 @@ export default class DB {
     }
   }
 
-  async executeQuery(query: string): Promise<void> {
+  async executeQuery(query: string): Promise<QueryResult | undefined> {
     try {
       const client: PoolClient = await this.getDBConnection();
       const result: QueryResult = await client.query(query);
-      console.log(result.rows);
+      return result
     } catch (error) {
       console.error("Error executing query:", error);
+      return undefined
     }
   }
 }

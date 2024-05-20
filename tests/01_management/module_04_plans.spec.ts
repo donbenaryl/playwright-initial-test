@@ -71,7 +71,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Plan name required"')).toBeVisible();
+			await expect(page.locator('span >> text="Plan name required"')).toBeVisible();
 		});
 
 		test("amount required", async ({ page }) => {
@@ -81,7 +81,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Amount should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Amount should be a valid number"')).toBeVisible();
 		});
 
 		test("amount should be a number", async ({ page }) => {
@@ -92,7 +92,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Amount should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Amount should be a valid number"')).toBeVisible();
 		});
 
 		test("terahashes required", async ({ page }) => {
@@ -102,7 +102,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Tera hashes should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Tera hashes should be a valid number"')).toBeVisible();
 		});
 
 		test("terahashes should be a number", async ({ page }) => {
@@ -113,7 +113,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Tera hashes should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Tera hashes should be a valid number"')).toBeVisible();
 		});
 
 		test("duration days required", async ({ page }) => {
@@ -123,7 +123,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Duration days should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Duration days should be a valid number"')).toBeVisible();
 		});
 
 		test("duration days should be a number", async ({ page }) => {
@@ -134,7 +134,7 @@ test.describe("Plans page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Duration days should be a valid number"')).toBeVisible();
+			await expect(page.locator('span >> text="Duration days should be a valid number"')).toBeVisible();
 		});
 		
 		test("should succeed on valid form", async ({ page }) => {

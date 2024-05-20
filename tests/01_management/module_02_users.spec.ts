@@ -58,7 +58,7 @@ test.describe("Users page", () => {
 			await expect(page.locator(`h3 >> text="Create User"`)).toBeVisible();
 			// Form hint
 			await expect(
-				page.locator(`p >> text="Please fill in the necessary information to create your new User"`)
+				page.locator(`p >> text="Please fill in the necessary information to create User"`)
 			).toBeVisible();
 			// Form labels
 			await expect(page.locator(`label >> text="User Email"`)).toBeVisible();
@@ -74,7 +74,7 @@ test.describe("Users page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Please enter a valid email"')).toBeVisible();
 		});
 
 		test("first name required", async ({ page }) => {
@@ -83,7 +83,7 @@ test.describe("Users page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="First name required"')).toBeVisible();
 		});
 
 		test("last name required", async ({ page }) => {
@@ -92,7 +92,7 @@ test.describe("Users page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Last name required"')).toBeVisible();
 		});
 
 		test("invalid email", async ({ page }) => {
@@ -102,7 +102,7 @@ test.describe("Users page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please enter a valid email"')).toBeVisible();
+			await expect(page.locator('span >> text="Please enter a valid email"')).toBeVisible();
 		});
 
 		test("should succeed on empty user level", async ({ page }) => {
@@ -220,7 +220,7 @@ test.describe("Users page", () => {
 			await page.click('button >> text="Update"');
 
 			// Validate error message
-			await expect(page.locator('p >> text="Invalid form data"')).toBeVisible();
+			await expect(page.locator('span >> text="Last name required"')).toBeVisible();
 		});
 
 		test("should fail on empty first name", async ({ page }) => {
@@ -231,7 +231,7 @@ test.describe("Users page", () => {
 			await page.click('button >> text="Update"');
 
 			// Validate error message
-			await expect(page.locator('p >> text="Invalid form data"')).toBeVisible();
+			await expect(page.locator('span >> text="First name required"')).toBeVisible();
 		});
 
 		test("should succeed on updating fields", async ({ page }) => {

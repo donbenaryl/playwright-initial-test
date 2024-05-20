@@ -5,7 +5,7 @@ dotenv.config();
 
 const USER_BASE_URL = process.env.FE_USER_BASE_URL || "";
 
-test.describe("Home page", () => {
+test.describe("Wallet form", () => {
 	test.beforeEach(async ({ page }) => {
 		// Login
 		await page.goto(USER_BASE_URL + "/login");
@@ -27,9 +27,10 @@ test.describe("Home page", () => {
 		await page.waitForSelector(`input[name="wallet"]`, { state: "visible" });
 		await page.waitForSelector(`span[role="alert"]`, { state: "hidden" });
 		await page.fill('input[name="wallet"]', "");
-		// await page.locator('button[type="submit"]').press("Enter");
-		await page.click(`button:has-text("Let's go!")`);
-		
+
+		await page.waitForSelector('#enterWalletModal button[type="submit"]', { state: "visible" });
+		await page.click('#enterWalletModal button[type="submit"]');
+
 		await page.waitForSelector(`span[role="alert"]`, { state: "visible" });
 	});
 
@@ -38,9 +39,19 @@ test.describe("Home page", () => {
 		await page.waitForSelector(`input[name="wallet"]`, { state: "visible" });
 		await page.waitForSelector(`span[role="alert"]`, { state: "hidden" });
 		await page.fill('input[name="wallet"]', "invalidWalletAddress");
-		await page.click(`button:has-text("Let's go!")`);
-		
+
+		await page.waitForSelector('#enterWalletModal button[type="submit"]', { state: "visible" });
+		await page.click('#enterWalletModal button[type="submit"]');
+
 		await page.waitForSelector(`span[role="alert"]`, { state: "visible" });
+	});
+
+	test("safe links exists", async ({ page }) => {
+		await page.waitForSelector(`input[name="wallet"]`, { state: "visible" });
+		await page.waitForSelector(`a >> text='Trust Wallet'`, { state: "visible" });
+		const link = await page.locator(`a >> text='Trust Wallet'`).getAttribute("href");
+
+		await expect(link).toBe("https://trustwallet.com/");
 	});
 
 	test("valid wallet address", async ({ page }) => {
@@ -48,14 +59,19 @@ test.describe("Home page", () => {
 		await page.waitForSelector(`input[name="wallet"]`, { state: "visible" });
 		await page.waitForSelector(`span[role="alert"]`, { state: "hidden" });
 		await page.fill('input[name="wallet"]', FAKE_WALLET_ADDRESS);
-		await page.click(`button:has-text("Let's go!")`);
-
-		// Validate wallet address input hidden
-		// await page.waitForSelector(`input[name="wallet"]`, { state: "hidden" });
+		
+		await page.waitForSelector('#enterWalletModal button[type="submit"]', { state: "visible" });
+		await page.click('#enterWalletModal button[type="submit"]');
 
 		// Validate another modal after successful save
-		await page.waitForSelector(`button[data-bs-dismiss="modal"]`, { state: "visible" });
-		
-		await page.click(`button[data-bs-dismiss="modal"]`);
+		await page.waitForSelector(`button[id="btn-start-now"]`, { state: "hidden" });
+		await page.click('button[id="btn-start-now"]');
+		await page.waitForSelector(`button[id="btn-start-now"]`, { state: "hidden" });
+	});
+
+	test("should not auto show wallet form on next login", async ({ page }) => {
+		// Wallet form should be hidden
+		await page.waitForSelector(`input[name="wallet"]`, { state: "hidden" });
+		await page.waitForSelector(`button[id="btn-start-now"]`, { state: "hidden" });
 	});
 });

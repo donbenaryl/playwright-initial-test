@@ -82,7 +82,7 @@ test.describe("Contracts page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Customer required"')).toBeVisible();
 		});
 
 		test("start date required", async ({ page }) => {
@@ -94,7 +94,7 @@ test.describe("Contracts page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Start date required"')).toBeVisible();
 		});
 
 		test("plan required", async ({ page }) => {
@@ -106,11 +106,11 @@ test.describe("Contracts page", () => {
 
 			await page.selectOption('select[name="customer_id"]', customerId);
 
-			await page.selectOption('select[name="plan_id"]', "default");
+			await page.selectOption('select[name="plan_id"]', "");
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Plan required"')).toBeVisible();
 		});
 
 		test("create referrer contract", async ({ page }) => {

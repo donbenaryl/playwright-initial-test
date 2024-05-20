@@ -23,6 +23,22 @@ export const TEST_CUSTOMER_REFERRER: ICustomer = {
 	referralCode: "",
 	password: "P@ssw0rd123!"
 };
+export const TEST_CUSTOMER_REFERRER_UPDATED: ICustomer = {
+	...TEST_CUSTOMER_REFERRER,
+	address: "testAddressUpdated",
+	city: "testCityUpdated",
+	firstName: "ReferrerFNUpdated",
+	lastName: "ReferrerLNUpdated",
+	name: function (): string {
+		return `${this.firstName} ${this.lastName}`;
+	},
+	contactName: "Jane DoeUpdated",
+	country: "Australia",
+	details: "testDetailsUpdated",
+	email: "referrer@askrella.de",
+	iban: "testIbanUpdated",
+	postalCode: "2600Updated",
+};
 
 
 export const TEST_CUSTOMER_REFERRED: ICustomer = {
@@ -43,6 +59,7 @@ export const PLAN_DETAILS: IPlan = {
 }
 
 export const FAKE_WALLET_ADDRESS = "1FfmbHfnpaZjKFvyi1okTjJJusN455paPH";
+export const FAKE_WALLET_ADDRESS_UPDATED = "1FfmbHfnpaZjKFvyi1okTjJJusN455paPJ";
 
 interface ICustomer {
 	name: () => string;

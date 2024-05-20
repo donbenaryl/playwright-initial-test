@@ -56,7 +56,7 @@ test.describe("Customers page", () => {
 			await expect(page.locator(`h3 >> text="Create Customer"`)).toBeVisible();
 			// Form hint
 			await expect(
-				page.locator(`p >> text="Please fill in the necessary information to create your new Customer"`)
+				page.locator(`p >> text="Please fill in the necessary information to create your Customer"`)
 			).toBeVisible();
 			// Form labels
 			await expect(page.locator(`label >> text="Customer Name"`)).toBeVisible();
@@ -85,7 +85,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Please enter a valid email"')).toBeVisible();
 		});
 
 		test("name required", async ({ page }) => {
@@ -102,7 +102,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Customer name required"')).toBeVisible();
 		});
 
 		test("details required", async ({ page }) => {
@@ -118,7 +118,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Details required"')).toBeVisible();
 		});
 
 		test("iban required", async ({ page }) => {
@@ -134,7 +134,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="IBAN required"')).toBeVisible();
 		});
 
 		test("phone required", async ({ page }) => {
@@ -150,7 +150,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Phone number required"')).toBeVisible();
 		});
 
 		test("address required", async ({ page }) => {
@@ -166,7 +166,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Address required"')).toBeVisible();
 		});
 
 		test("city required", async ({ page }) => {
@@ -182,7 +182,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="City required"')).toBeVisible();
 		});
 
 		test("zip required", async ({ page }) => {
@@ -198,7 +198,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Postal code required"')).toBeVisible();
 		});
 
 		test("contact required", async ({ page }) => {
@@ -214,7 +214,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Contact name required"')).toBeVisible();
 		});
 
 		test("should succeed with default country set to Germany and no referral code", async ({ page }) => {
@@ -253,7 +253,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Create"');
 
-			await expect(page.locator('p >> text="Invalid referral code"')).toBeVisible();
+			await expect(page.locator('span >> text="Invalid referral code"')).toBeVisible();
 		});
 
 		test("should succeed on valid referral code", async ({ page }) => {
@@ -374,7 +374,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Please enter a valid email"')).toBeVisible();
 		});
 
 		test("name required", async ({ page }) => {
@@ -382,7 +382,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Customer name required"')).toBeVisible();
 		});
 
 		test("details required", async ({ page }) => {
@@ -390,7 +390,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Details required"')).toBeVisible();
 		});
 
 		test("iban required", async ({ page }) => {
@@ -398,7 +398,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="IBAN required"')).toBeVisible();
 		});
 
 		test("phone required", async ({ page }) => {
@@ -406,7 +406,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Phone number required"')).toBeVisible();
 		});
 
 		test("address required", async ({ page }) => {
@@ -414,7 +414,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Address required"')).toBeVisible();
 		});
 
 		test("city required", async ({ page }) => {
@@ -422,7 +422,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="City required"')).toBeVisible();
 		});
 
 		test("zip required", async ({ page }) => {
@@ -430,7 +430,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Postal code required"')).toBeVisible();
 		});
 
 		test("contact required", async ({ page }) => {
@@ -438,7 +438,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Please complete all fields"')).toBeVisible();
+			await expect(page.locator('span >> text="Contact name required"')).toBeVisible();
 		});
 
 		test("should fail on invalid referral code", async ({ page }) => {
@@ -446,7 +446,7 @@ test.describe("Customers page", () => {
 
 			await page.click('button >> text="Update"');
 
-			await expect(page.locator('p >> text="Invalid referral code"')).toBeVisible();
+			await expect(page.locator('span >> text="Invalid referral code"')).toBeVisible();
 		});
 
 		test("should succeed on valid form", async ({ page }) => {

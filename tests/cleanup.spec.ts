@@ -6,7 +6,7 @@ import {
 	TEST_CUSTOMER_REFERRER,
 	TEST_PASSWORD,
 	TEST_USER
-} from "../constants";
+} from "./constants";
 
 test.describe("Cleanup test data", () => {
 	test.beforeEach(async ({ page }) => {
