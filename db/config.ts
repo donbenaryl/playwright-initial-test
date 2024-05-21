@@ -1,14 +1,17 @@
 import { Pool, PoolClient, QueryResult } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default class DB {
   private pool: Pool;
 
   private DBConfig = {
-    user: "DonAdmin",
-    host: "localhost",
-    database: "blockb-test",
-    password: "P@ssw0rd123!",
-    port: 5432,
+    user: process.env.DB_USERNAME || "DonAdmin",
+    host: process.env.DB_HOST || "localhost",
+    database: process.env.DB_NAME || "blockb-test",
+    password: process.env.DB_PASSWORD || "P@ssw0rd123!",
+    port: Number(process.env.DB_PORT) || 54321,
     max: 10,
     idleTimeoutMillis: 30000,
     connectionTimeoutMillis: 2000,
